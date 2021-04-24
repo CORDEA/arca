@@ -11,7 +11,7 @@ local function main()
         repository:insert(key, data)
     elseif command == "find" then
         assert(key)
-        repository:find(key)
+        print(repository:find(key))
     elseif command == "list" then
         local r = repository:findAll()
         print(table.concat(r, "\n"))
