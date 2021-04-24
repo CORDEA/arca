@@ -39,10 +39,10 @@ function dataRepository:find(key)
 end
 
 function dataRepository:findAll()
-    local stmt = assert(db:prepare("SELECT * FROM data"))
+    local stmt = assert(db:prepare("SELECT key FROM data"))
     local list = {}
     for row in stmt:nrows() do
-        table.insert(list, row)
+        table.insert(list, row.key)
     end
     return list
 end

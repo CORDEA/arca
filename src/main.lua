@@ -12,7 +12,8 @@ local function main()
         local key = arg[2]
         repository.find(key)
     elseif command == "list" then
-        repository.findAll()
+        local r = repository.findAll()
+        print(table.concat(r, "\n"))
     else
         error("Received unknown option.")
     end
