@@ -29,4 +29,13 @@ function dataRepository:insert(key, data)
     stmt:reset()
 end
 
+function dataRepository:findAll()
+    local stmt = assert(db:prepare("SELECT * FROM data"))
+    local list = {}
+    for row in stmt:nrows() do
+        table.insert(list, row)
+    end
+    return list
+end
+
 return dataRepository
