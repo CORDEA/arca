@@ -22,4 +22,11 @@ function dataRepository:new(object)
     return object
 end
 
+function dataRepository:insert(key, data)
+    local stmt = assert(db:prepare("INSERT INTO data VALUES (:key, :data)"))
+    stmt:bind_names { key = key, data = data }
+    stmt:step()
+    stmt:reset()
+end
+
 return dataRepository
