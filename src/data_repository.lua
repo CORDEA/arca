@@ -29,6 +29,15 @@ function dataRepository:insert(key, data)
     stmt:reset()
 end
 
+function dataRepository:find(key)
+    local stmt = assert(db:prepare("SELECT * FROM data WHERE key = :key"))
+    stmt:bind_names { key = key }
+    stmt:step()
+    local values = stmt:get_values()
+    stmt:reset()
+    return values
+end
+
 function dataRepository:findAll()
     local stmt = assert(db:prepare("SELECT * FROM data"))
     local list = {}
