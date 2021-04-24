@@ -8,12 +8,12 @@ local function main()
     if command == "add" then
         local data = io.read("*all")
         assert(key)
-        repository.insert(key, data)
+        repository:insert(key, data)
     elseif command == "find" then
         assert(key)
-        repository.find(key)
+        repository:find(key)
     elseif command == "list" then
-        local r = repository.findAll()
+        local r = repository:findAll()
         print(table.concat(r, "\n"))
     else
         error("Received unknown option.")
